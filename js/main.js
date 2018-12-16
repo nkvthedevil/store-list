@@ -160,10 +160,12 @@ $(document).ready(function () {
 
         if (btn.hasClass('active')) {
             btn.text('edit');
+            card.find('.'+editClass).css('background-color','inherit');
             sessionStorage.setItem(id, getCardData(card));
         }
         else {
             btn.text('save');
+            card.find('.'+editClass).css('background-color','#cfc');
             $('.js-store-card.' + activeClass).find('.js-edit-store-btn.active').click();
             $('.js-edit-products-btn.active').click();
         }
@@ -192,6 +194,7 @@ $(document).ready(function () {
                 else*/ el.replaceWith(input);
 
                 let save = function () {
+                    if (input.val()=='') input.val('null');
                     let newEl = el.text(input.val());
                     /*if (el.is('td')) el.replaceWith(newEl);
                     else*/ input.replaceWith(newEl);
@@ -241,6 +244,7 @@ $(document).ready(function () {
 
         if (btn.hasClass('active')) {
             btn.text('edit');
+            table.find('.'+editClass).css('background-color','inherit');
 
             table.each(function () {
                 let data = $(this).find('.' + editClass);
@@ -256,6 +260,7 @@ $(document).ready(function () {
         }
         else {
             btn.text('save');
+            table.find('.'+editClass).css('background-color','#cfc');
         }
 
         editInPlace(table, btn);
