@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Store list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <div class="js-stores-list">
+                <div class="card my-2 js-store-card">
+                    <div class="card-body ml-md-3 mt-3 mt-mr-0">
+                        <span class="badge badge-secondary position-absolute js-store-number"
+                              style="top:10px; left:10px"></span>
+                        <h5 class="card-title d-inline-block js-edit-data js-store-name"></h5>
+                        <button class="btn btn-sm btn-danger position-absolute js-delete-store-btn"
+                                style="right:10px;top: 10px">X
+                        </button>
+                        <h6 class="card-subtitle mb-2 text-muted js-edit-data"></h6>
+                        <p class="card-text js-edit-data js-store-address"></p>
+                        <button class="card-link btn btn-primary js-products-link">Products</button>
+                        <button class="btn btn-sm btn-outline-success position-absolute js-edit-store-btn"
+                                data-toggle="button"
+                                aria-pressed="false" style="right:10px;bottom:10px">edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary m-auto d-block js-add-store-btn">+</button>
+        </div>
+        <div class="col">
+            <div class="js-products-table table-responsive">
+                <table class="table my-2">
+                    <thead>
+                    <tr class="bg-light">
+                        <th width="10%">#</th>
+                        <th width="30%">Name</th>
+                        <th width="30%">Quantity</th>
+                        <th width="30%">Price</th>
+                        <th width="70px" class="text-right">
+                            <button class="btn btn-sm btn-outline-success js-edit-products-btn" data-toggle="button"
+                                    aria-pressed="false">edit
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary m-auto d-block js-add-product-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="map" class="mt-3" style="height:300px"></div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item bg-success">Implemented</li>
+                <li class="list-group-item">Loading stores&products from sessionStorage</li>
+                <li class="list-group-item">Deleting stores&products</li>
+                <li class="list-group-item">Adding stores&products</li>
+                <li class="list-group-item">Editing and saving stores&products data</li>
+                <li class="list-group-item">Placing marks on map using loaded firstly store address data</li>
+            </ul>
+        </div>
+        <div class="col d-flex flex-column align-items-end justify-content-between">
+            <ul class="list-group w-100">
+                <li class="list-group-item bg-danger">To do (someday :)</li>
+                <li class="list-group-item">Redraw map marks after editing store data</li>
+                <li class="list-group-item">Centering map by first address</li>
+                <li class="list-group-item">Drag&drop store cards</li>
+                <li class="list-group-item">Restyling?</li>
+            </ul>
+            <em class="float-right mt-3">Time spent: 13:28:13</em>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://api-maps.yandex.ru/2.0/?apikey=7357b324-0259-4879-b232-db4e58b82bc5&load=package.standard&lang=ru-RU"
+        type="text/javascript"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
