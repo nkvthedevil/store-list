@@ -4,7 +4,7 @@ $(document).ready(function () {
         constructor(id, name, address, hours, products) {
             this.id = id || Date.now();
             this.name = name || 'Store Name';
-            this.address = address || 'Store address';
+            this.address = address || 'ул. К. Маркса, 38';
             this.hours = hours || '9.00-17.00';
             this.products = products || [new Product()];
         }
@@ -121,6 +121,7 @@ $(document).ready(function () {
         storeCard.clone().attr('id', id).appendTo('.js-stores-list');
         setCardData(store);
         showProducts(id);
+        placeMarks(storesMap);
     });
 
     //delete store
@@ -150,6 +151,8 @@ $(document).ready(function () {
             card.remove();
             sessionStorage.removeItem(id);
         }
+
+        placeMarks(storesMap);
     }));
 
     //edit store
@@ -162,6 +165,7 @@ $(document).ready(function () {
             btn.text('edit');
             card.find('.'+editClass).css('background-color','inherit');
             sessionStorage.setItem(id, getCardData(card));
+            placeMarks(storesMap);
         }
         else {
             btn.text('save');
@@ -172,7 +176,6 @@ $(document).ready(function () {
 
         showProducts(id);
         editInPlace(card, btn);
-
     }));
 
     function editInPlace(item, editButton) {
@@ -268,17 +271,24 @@ $(document).ready(function () {
 
     ////map
     ymaps.ready(init);
-    var myMap;
+    let storesMap;
+    let marksCollection;
 
     function init() {
-
-        myMap = new ymaps.Map('map', {
+        storesMap = new ymaps.Map('map', {
             center: [53.9, 27.56659], // Minsk
             zoom: 12
         });
+        marksCollection = new ymaps.GeoObjectCollection();
+        placeMarks(storesMap);
+    }
+
+    function placeMarks(map) {
         let names = $('.js-store-name');
         let addresses = $('.js-store-address');
         let numbers = $('.js-store-number');
+
+        marksCollection.removeAll();
 
         for (let i = 0; i < addresses.length; i++) {
             let address = addresses[i].innerText;
@@ -294,12 +304,14 @@ $(document).ready(function () {
                         balloonContent: name,
                         iconContent: number
                     });
-                    myMap.geoObjects.add(placeMark);
+                    map.geoObjects.add(placeMark);
+                    marksCollection.add(placeMark);
                 },
                 function (err) {
                     alert('Error');
                 }
             );
         }
+        map.geoObjects.add(marksCollection);
     }
 });
